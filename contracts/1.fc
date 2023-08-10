@@ -22,6 +22,9 @@
     int a = -1;
     int b = 1;
     tuple t = empty_tuple();
+    if (k == 0){
+      return t;
+    }
     int T = n + k;
     while (T > 0) {
         T -= 1;
