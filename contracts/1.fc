@@ -22,7 +22,9 @@
     int a = -1;
     int b = 1;
     tuple t = empty_tuple();
-    repeat(n + k) {
+    int T = n + k;
+    while (T > 0) {
+        T -= 1;
         int c = a + b;
         if(con >= n){
             tpush(t,c);
