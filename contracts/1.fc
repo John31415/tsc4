@@ -25,7 +25,7 @@
     repeat(n + k) {
         int c = a + b;
         if(con >= n){
-            t~tpush(c);
+            tpush(t,c);
         }
         a = b;
         b = c;
@@ -33,4 +33,4 @@
     }
     return t;
 }
-;; git add . && git commt -m "" && git push -u origin main
+;; git add . && git commit -m "cualquier cosa" && git push -u origin main
