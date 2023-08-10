@@ -20,7 +20,7 @@
 (tuple) fibonacci_sequence (int n, int k) method_id { 
     int a = -1; 
     int b = 1; 
-    int c;
+    int c = 0;
     tuple t = empty_tuple();
     repeat (n){
         c = a + b;
@@ -36,3 +36,4 @@
     return t;
 }
 ;; git add . && git commit -m "cualquier cosa" && git push -u origin main
+;; 5.656760460407202
