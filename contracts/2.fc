@@ -10,6 +10,7 @@
 -}
 
 (int) tlen (tuple t) asm "TLEN";
+forall X -> (X) index(tuple t, int k) asm "INDEXVAR";
 
 () recv_internal() {
 }
@@ -18,7 +19,7 @@
 (tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
     int n = matrixA.tlen();
     int m = matrixB.tlen();
-    int p = matrixB.at(0).tlen();
+    int p = matrixB.index(0).tlen();
     int i = 0;
     tuple solve = empty_tuple();
     while(i < n){
@@ -28,8 +29,8 @@
             int s = 0;
             int k = 0;
             while(k < m){
-                s += matrixA.at(i).at(k) * matrixB.at(k).at(j); 
-              k += 1;
+                s += matrixA.index(i).index(k) * matrixB.index(k).index(j); 
+                k += 1;
             }
             t~tpush(s);
             j += 1;
