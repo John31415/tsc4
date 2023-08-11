@@ -40,4 +40,5 @@ forall X -> (X) index(tuple t, int k) asm "INDEXVAR";
     }
     return solve;
 }
-
+;; 5.973855634353958
+;; 18106083
