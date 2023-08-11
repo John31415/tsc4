@@ -11,8 +11,8 @@
 
 ;; testable
 (cell) find_branch_by_hash(int hash, cell tree) method_id {
-    tuple t = null();
-    t~push_back(tree);
+    ;; tuple t = null();
+    ;; t~push_back(tree);
     cell solve = begin_cell().end_cell();
     ;; while(~ t.is_null()){
     ;;     cell c = t~pop_back();
