@@ -20,13 +20,13 @@
     int m = matrixB.tlen();
     int p = matrixB.at(0).tlen();
     int i = 0;
-    int j = 0;
-    int k = 0;
     tuple solve = empty_tuple();
     while(i < n){
         tuple t = empty_tuple();
+        int j = 0;
         while(j < p){
             int s = 0;
+            int k = 0;
             while(k < m){
                 s += matrixA.at(i).at(k) * matrixB.at(k).at(j); 
               k += 1;
