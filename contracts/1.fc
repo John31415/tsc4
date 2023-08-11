@@ -1,40 +1,28 @@
 {-
-  TASK 5 - Fibonacci sequence
-  Implement a function that generates the Fibonacci
-  sequence from N to N+K terms (0<=N<=370; 0<=N+K<=371; 0<=K<=255).
-  The first two terms of the Fibonacci sequence are F_0 = 0 and F_1 = 1,
-  and the rest are defined as F_n = F_(n-1) + F_(n-2).
-  The resulting Fibonacci sequence should be stored in a tuple.
-  For example, a request with N = 1 and K = 3 should return a tuple [1, 1, 2],
-  and a request with N = 201 and K = 4 should return a tuple
-  [453973694165307953197296969697410619233826,
-  734544867157818093234908902110449296423351,
-  1188518561323126046432205871807859915657177,
-  1923063428480944139667114773918309212080528]
+  TASK 1 - Find branch of the cell tree
+  Write the method that will find a branch of the tree by comparing its
+  hash with the hash received in the first parameter. When the algorithm finds
+  the subtree (branch) whose hash equals the received hash, the root cell of
+  this branch should be returned. Return empty cell if the branch is not found.
 -}
-
-tuple empty_tuple() asm "NIL"; 
 
 () recv_internal() {
 }
 
 ;; testable
-(tuple) fibonacci_sequence (int n, int k) method_id { 
-    int a = -1; 
-    int b = 1; 
-    int c = 0;
-    tuple t = empty_tuple();
-    repeat (n){
-        c = a + b;
-        a = b;
-        b = c;
+(cell) find_branch_by_hash(int hash, cell tree) method_id {
+    tuple t = null();
+    t~push_back(tree);
+    cell solve = begin_cell().end_cell();
+    while(~ t.is_null()){
+        cell c = t~pop_back();
+        if(c.cell_hash() == hash){
+            solve = c;
+        }
+        slice s = c.begin_parse();
+        repeat(s.slice_refs()){
+            t~push_back(s~load_ref());
+        }
     }
-    repeat (k){
-        c = a + b;
-        a = b;
-        b = c;
-        t~tpush(c);
-    }
-    return t;
+    return solve;
 }
-;; git add . && git commit -m "cualquier cosa" && git push -u origin main
