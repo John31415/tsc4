@@ -7,8 +7,6 @@
 -}
 
 forall X -> int is_null (X x) asm "ISNULL";
-forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
-forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
 
 () recv_internal() {
 }
@@ -16,18 +14,18 @@ forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
 ;; testable
 (cell) find_branch_by_hash(int hash, cell tree) method_id {
     tuple t = null();
-    t~push_back(tree);
+    t = cons(tree,t);
     while(~ t.is_null()){
-        cell c = t~pop_back();
+        (cell c,t) = uncons(t);
         if(c.cell_hash() == hash){
             return c;
         }
         slice s = c.begin_parse();
         repeat(s.slice_refs()){
-            t~push_back(s~load_ref());
+            t = cons(s~load_ref(),t);
         }
     }
     return begin_cell().end_cell();
 }
-;; 5.367879441171443
-;; 1719660
+;; 5.396566123952745
+;; 1590535
