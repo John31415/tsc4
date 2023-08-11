@@ -14,15 +14,15 @@
     tuple t = null();
     t~push_back(tree);
     cell solve = begin_cell().end_cell();
-    while(~ t.is_null()){
-        cell c = t~pop_back();
-        if(c.cell_hash() == hash){
-            solve = c;
-        }
-        slice s = c.begin_parse();
-        repeat(s.slice_refs()){
-            t~push_back(s~load_ref());
-        }
-    }
+    ;; while(~ t.is_null()){
+    ;;     cell c = t~pop_back();
+    ;;     if(c.cell_hash() == hash){
+    ;;         solve = c;
+    ;;     }
+    ;;     slice s = c.begin_parse();
+    ;;     repeat(s.slice_refs()){
+    ;;         t~push_back(s~load_ref());
+    ;;     }
+    ;; }
     return solve;
 }
