@@ -11,7 +11,7 @@
 
 ;; testable
 (cell) caesar_cipher_encrypt(int shift, cell text) method_id {
-    ;; int f = text~load_int(32);
+    int f = text~load_int(32);
     slice s = text.begin_parse();
     ;; builder string = begin_cell().store_int(f,32);
     tuple chars = null();
@@ -44,7 +44,7 @@
 
 ;; testable
 (cell) caesar_cipher_decrypt(int shift, cell text) method_id {
-    ;; int f = text~load_int(32);
+    int f = text~load_int(32);
     slice s = text.begin_parse();
     ;; builder string = begin_cell().store_int(f,32);
     tuple chars = null();
