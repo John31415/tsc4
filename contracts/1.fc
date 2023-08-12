@@ -23,8 +23,8 @@ int slice_hash(slice s) asm "HASHSU";
         repeat(s.slice_refs()){
             t~push_back(s~load_ref());
         }
-        if(s.slice_hash() == hash){
-            return s.end_parse(); 
+        if(s.end_parse().cell_hash() == hash){
+            return s.end_cell(); 
         }
     }
     return begin_cell().end_cell();
