@@ -8,6 +8,8 @@
 
 forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
 (int) tlen (tuple t) asm "TLEN";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
 
 () recv_internal() {
 }
@@ -57,11 +59,11 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     ;; }
     tuple chars2 = null();
     repeat(siz){
-        int char = chars~list_next();
-        chars2 = cons(char,chars2);
+        int char = chars~pop_back();
+        chars2~push_back(char);
     }
     repeat(siz){
-        int char = chars2~list_next();
+        int char = chars2~pop_back();
         string~store_uint(char,8);
     }
     return string.end_cell();
@@ -112,11 +114,11 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     ;; }
     tuple chars2 = null();
     repeat(siz){
-        int char = chars~list_next();
-        chars2 = cons(char,chars2);
+        int char = chars~pop_back();
+        chars2~push_back(char);
     }
     repeat(siz){
-        int char = chars2~list_next();
+        int char = chars2~pop_back();
         string~store_uint(char,8);
     }
     return string.end_cell();
