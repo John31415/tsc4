@@ -11,9 +11,9 @@
 
 ;; testable
 (cell) caesar_cipher_encrypt(int shift, cell text) method_id {
-    int f = text~load_int(32);
+    ;; int f = text~load_int(32);
     slice s = text.begin_parse();
-    builder string = begin_cell().store_int(f,32);
+    ;; builder string = begin_cell().store_int(f,32);
     tuple chars = null();
     ;; while(~ s.slice_empty?()){
     ;;     if(s.slice_data_empty?()){
@@ -38,14 +38,15 @@
     ;;     int char = chars~list_next();
     ;;     string~store_uint(char,8);
     ;; }until(null?(chars));
-    return string.end_cell();
+    ;; return string.end_cell();
+    return begin_cell().end_cell();
 }
 
 ;; testable
 (cell) caesar_cipher_decrypt(int shift, cell text) method_id {
-    int f = text~load_int(32);
+    ;; int f = text~load_int(32);
     slice s = text.begin_parse();
-    builder string = begin_cell().store_int(f,32);
+    ;; builder string = begin_cell().store_int(f,32);
     tuple chars = null();
     ;; while(~ s.slice_empty?()){
     ;;     if(s.slice_data_empty?()){
@@ -70,6 +71,7 @@
     ;;     int char = chars~list_next();
     ;;     string~store_uint(char,8);
     ;; }until(null?(chars));
-    return string.end_cell();
+    ;; return string.end_cell();
+    return begin_cell().end_cell();
 }
 
