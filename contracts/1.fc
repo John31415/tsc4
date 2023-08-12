@@ -17,17 +17,13 @@ forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
 (cell) find_branch_by_hash(int hash, cell tree) method_id {
     tuple t = null();
     t~push_back(tree);
-    int con = 1;
-    while(con){
+    while(~ t.is_null()){
         cell c = t~pop_back();
-        con -= 1;
         if(c.cell_hash() == hash){
             return c;
         }
         slice s = c.begin_parse();
-        int a = s.slice_refs();
-        con += a;
-        repeat(a){
+        repeat(s.slice_refs()){
             t~push_back(s~load_ref());
         }
     }
