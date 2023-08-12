@@ -31,7 +31,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
             char = (char - 97 + shift) % 26 + 97;
         }
         chars = cons(char,chars);
-        string~store_uint(char,8);
+        ;; string~store_uint(char,8);
     }
     int siz = chars.tlen();
     ;; if(siz > 123){
@@ -86,7 +86,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
             char = (char - 97 - shift) % 26 + 97;
         }
         chars = cons(char,chars);
-        string~store_uint(char,8);
+        ;; string~store_uint(char,8);
     }
     int siz = chars.tlen();
     ;; if(siz > 123){
