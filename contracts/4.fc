@@ -15,29 +15,29 @@
     slice s = text.begin_parse();
     builder string = begin_cell().store_int(f,32);
     tuple chars = null();
-    while(~ s.slice_empty?()){
-        if(s.slice_data_empty?()){
-            s~load_ref();
-        }
-        int char = s~load_uint(8);
-        if((65 <= char) & (char <= 90)){
-            char += shift;
-            if(char > 90){
-                char -= 26;
-            }
-        }
-        if((97 <= char) & (char <= 122)){
-            char += shift;
-            if(char > 122){
-                char -= 26;
-            }
-        }
-        chars = cons(char,chars);
-    }
-    do{
-        int char = chars~list_next();
-        string~store_uint(char,8);
-    }until(null?(chars));
+    ;; while(~ s.slice_empty?()){
+    ;;     if(s.slice_data_empty?()){
+    ;;         s~load_ref();
+    ;;     }
+    ;;     int char = s~load_uint(8);
+    ;;     if((65 <= char) & (char <= 90)){
+    ;;         char += shift;
+    ;;         if(char > 90){
+    ;;             char -= 26;
+    ;;         }
+    ;;     }
+    ;;     if((97 <= char) & (char <= 122)){
+    ;;         char += shift;
+    ;;         if(char > 122){
+    ;;             char -= 26;
+    ;;         }
+    ;;     }
+    ;;     chars = cons(char,chars);
+    ;; }
+    ;; do{
+    ;;     int char = chars~list_next();
+    ;;     string~store_uint(char,8);
+    ;; }until(null?(chars));
     return string.end_cell();
 }
 
