@@ -41,7 +41,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         }
     }else{
         siz -= 123;
-        builder b2 = begin_cell();
+        ;; builder b2 = begin_cell();
         ;; while(siz){
         ;;     builder b1 = begin_cell();
         ;;     b1 = b2;
