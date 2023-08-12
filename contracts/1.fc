@@ -9,7 +9,6 @@
 forall X -> int is_null (X x) asm "ISNULL";
 forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
 forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
-int slice_hash(slice s) asm "HASHSU";
 
 () recv_internal() {
 }
@@ -19,13 +18,14 @@ int slice_hash(slice s) asm "HASHSU";
     tuple t = null();
     t~push_back(tree);
     while(~ t.is_null()){
-        slice s = t~pop_back().begin_parse();
+        cell c = t~pop_back();
+        if(c.cell_hash() == hash){
+            return c;
+        }
+        slice s = c.begin_parse();
         repeat(s.slice_refs()){
             t~push_back(s~load_ref());
         }
-        if(s.end_parse().cell_hash() == hash){
-            return s.end_cell(); 
-        } 
     }
     return begin_cell().end_cell();
 }
