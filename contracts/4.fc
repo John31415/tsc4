@@ -13,6 +13,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
 
 ;; testable
 (cell) caesar_cipher_encrypt(int shift, cell text) method_id {
+    shift = ((shift % 26) + 26) % 26;
     slice s = text.begin_parse();
     int f = s~load_int(32);
     builder string = begin_cell().store_int(f,32);
@@ -50,6 +51,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
 
 ;; testable
 (cell) caesar_cipher_decrypt(int shift, cell text) method_id {
+    shift = ((shift % 26) + 26) % 26;
     slice s = text.begin_parse();
     int f = s~load_int(32);
     builder string = begin_cell().store_int(f,32);
