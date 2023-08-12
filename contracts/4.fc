@@ -37,10 +37,10 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         }
         chars = cons(char,chars);
     }
-    do{
-        (int char , chars) = uncons(chars);
-        chars2 = cons(char,chars2); 
-    }until(chars.null?());
+    ;; do{
+    ;;     (int char , chars) = uncons(chars);
+    ;;     chars2 = cons(char,chars2); 
+    ;; }until(chars.null?());
     ;; do{
     ;;     int char = chars2~list_next();
     ;;     string~store_uint(char,8);
