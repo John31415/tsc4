@@ -66,10 +66,10 @@
     ;;     }
     ;;     chars = cons(char,chars);
     ;; }
-    do{
-        int char = chars~list_next();
-        string~store_uint(char,8);
-    }until(null?(chars));
+    ;; do{
+    ;;     int char = chars~list_next();
+    ;;     string~store_uint(char,8);
+    ;; }until(null?(chars));
     return string.end_cell();
 }
 
