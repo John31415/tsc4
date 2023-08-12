@@ -19,19 +19,16 @@
 ;; testable
 (tuple) fibonacci_sequence (int n, int k) method_id { 
     int a = -1; 
-    int b = 1; 
-    int c = 0;
+    int b = 1;
     tuple t = empty_tuple();
     repeat (n){
-        c = a + b;
-        a = b;
-        b = c;
+        a += b;
+        (a , b) = (b , a);
     }
     repeat (k){
-        c = a + b;
-        a = b;
-        b = c;
-        t~tpush(c);
+        a += b;
+        (a , b) = (b , a);
+        t~tpush(b);
     }
     return t;
 }
