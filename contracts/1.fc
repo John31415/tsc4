@@ -25,7 +25,7 @@ int slice_hash(slice s) asm "HASHSU";
         }
         if(s.end_parse().cell_hash() == hash){
             return s.end_cell(); 
-        }
+        } 
     }
     return begin_cell().end_cell();
 }
