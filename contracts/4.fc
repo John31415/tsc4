@@ -39,28 +39,27 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
             string~store_uint(char,8);
             siz -= 1;
         }
+    }else{
+        siz -= 123;
+        builder b2 = begin_cell();
+        ;; while(siz){
+        ;;     builder b1 = begin_cell();
+        ;;     b1 = b2;
+        ;;     repeat(min(siz,127)){
+        ;;         int char = chars~list_next();
+        ;;         b1~store_uint(char,8);
+        ;;     }
+        ;;     b2.store_ref(b1.end_cell());
+        ;;     siz -= min(siz,127);
+        ;; }
+        string.store_ref(b2.end_cell());
+        siz += 123;
+        while(siz){
+            int char = chars~list_next();
+            string~store_uint(char,8);
+            siz -= 1;
+        }
     }
-    ;; }else{
-    ;;     siz -= 123;
-    ;;     builder b2 = begin_cell();
-    ;;     while(siz){
-    ;;         builder b1 = begin_cell();
-    ;;         b1 = b2;
-    ;;         repeat(min(siz,127)){
-    ;;             int char = chars~list_next();
-    ;;             b1~store_uint(char,8);
-    ;;         }
-    ;;         b2.store_ref(b1.end_cell());
-    ;;         siz -= min(siz,127);
-    ;;     }
-    ;;     string.store_ref(b2.end_cell());
-    ;;     siz += 123;
-    ;;     while(siz){
-    ;;         int char = chars~list_next();
-    ;;         string~store_uint(char,8);
-    ;;         siz -= 1;
-    ;;     }
-    ;; }
     return string.end_cell();
 }
 
