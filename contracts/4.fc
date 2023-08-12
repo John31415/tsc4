@@ -54,11 +54,11 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         ;; }
         ;; string.store_ref(b2.end_cell());
         siz += 123;
-        while(siz){
-            int char = chars~list_next();
-            string~store_uint(char,8);
-            siz -= 1;
-        }
+        ;; while(siz){
+        ;;     int char = chars~list_next();
+        ;;     string~store_uint(char,8);
+        ;;     siz -= 1;
+        ;; }
     }
     return string.end_cell();
 }
