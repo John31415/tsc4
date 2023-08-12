@@ -7,6 +7,7 @@
 -}
 
 forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
+(int) tlen (tuple t) asm "TLEN";
 
 () recv_internal() {
 }
@@ -18,7 +19,6 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     int f = s~load_int(32);
     builder string = begin_cell().store_int(f,32);
     tuple chars = null();
-    tuple chars2 = null();
     while(~ s.slice_empty?()){
         if(s.slice_data_empty?()){
             s = s~load_ref().begin_parse();
@@ -32,14 +32,18 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         }
         chars = cons(char,chars);
     }
-    while(~ chars.null?()){
-        int char = chars~list_next();
-        chars2 = cons(char,chars2); 
+    int siz = chars.tlen();
+    builder b2 = begin_cell();
+    while(siz){
+        builder b1 = begin_cell();
+        b1 = b2;
+        repeat(min(siz,127)){
+            int char = chars~list_next();
+            b1~store_uint(char,8);
+        }
+        b2.store_ref(b1.end_cell());
     }
-    while(~ chars2.null?()){
-        int char = chars2~list_next();
-        string~store_uint(char,8);
-    }
+    string.store_ref(b2.end_cell());
     return string.end_cell();
 }
 
@@ -50,7 +54,6 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     int f = s~load_int(32);
     builder string = begin_cell().store_int(f,32);
     tuple chars = null();
-    tuple chars2 = null();
     while(~ s.slice_empty?()){
         if(s.slice_data_empty?()){
             s = s~load_ref().begin_parse();
@@ -64,14 +67,18 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         }
         chars = cons(char,chars);
     }
-    while(~ chars.null?()){
-        int char = chars~list_next();
-        chars2 = cons(char,chars2); 
+    int siz = chars.tlen();
+    builder b2 = begin_cell();
+    while(siz){
+        builder b1 = begin_cell();
+        b1 = b2;
+        repeat(min(siz,127)){
+            int char = chars~list_next();
+            b1~store_uint(char,8);
+        }
+        b2.store_ref(b1.end_cell());
     }
-    while(~ chars2.null?()){
-        int char = chars2~list_next();
-        string~store_uint(char,8);
-    }
+    string.store_ref(b2.end_cell());
     return string.end_cell();
 }
 
