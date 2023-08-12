@@ -60,10 +60,10 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     ;;     int char = chars~list_next();
     ;;     chars2 = cons(char,chars2);
     ;; }
-    ;; repeat(siz){
-    ;;     int char = chars2~list_next();
-    ;;     string~store_uint(char,8);
-    ;; }
+    repeat(siz){
+        int char = chars~list_next();
+        string~store_uint(char,8);
+    }
     return string.end_cell();
 }
 
@@ -115,10 +115,10 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     ;;     int char = chars~list_next();
     ;;     chars2 = cons(char,chars2);
     ;; }
-    ;; repeat(siz){
-    ;;     int char = chars2~list_next();
-    ;;     string~store_uint(char,8);
-    ;; }
+    repeat(siz){
+        int char = chars~list_next();
+        string~store_uint(char,8);
+    }
     return string.end_cell();
 }
 
