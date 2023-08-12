@@ -35,52 +35,52 @@
         }
         chars = cons(char,chars);
     }
-    do{
-        int char = chars~list_next();
-        chars2 = cons(char,chars2);
-    }until(null?(chars));
-    do{
-        int char = chars2~list_next();
-        string~store_uint(char,8);
-    }until(null?(chars2));
-    return string.end_cell();
-    ;; return begin_cell().end_cell();
+    ;; do{
+    ;;     int char = chars~list_next();
+    ;;     chars2 = cons(char,chars2);
+    ;; }until(null?(chars));
+    ;; do{
+    ;;     int char = chars2~list_next();
+    ;;     string~store_uint(char,8);
+    ;; }until(null?(chars2));
+    ;; return string.end_cell();
+    return begin_cell().end_cell();
 }
 
 ;; testable
 (cell) caesar_cipher_decrypt(int shift, cell text) method_id {
-    slice s = text.begin_parse();
-    int f = s~load_int(32);
-    builder string = begin_cell().store_int(f,32);
-    tuple chars = null();
-    while(~ s.slice_empty?()){
-        if(s.slice_data_empty?()){
-            s = s~load_ref().begin_parse();
-        }
-        int char = s~load_uint(8);
-        if((65 <= char) & (char <= 90)){
-            char += shift;
-            if(char < 65){
-                char += 26;
-            }
-        }
-        if((97 <= char) & (char <= 122)){
-            char += shift;
-            if(char < 97){
-                char += 26;
-            }
-        }
-        chars = cons(char,chars);
-    }
-    do{
-        int char = chars~list_next();
-        chars2 = cons(char,chars2);
-    }until(null?(chars));
-    do{
-        int char = chars2~list_next();
-        string~store_uint(char,8);
-    }until(null?(chars2));
-    return string.end_cell();
-    ;; return begin_cell().end_cell();
+    ;; slice s = text.begin_parse();
+    ;; int f = s~load_int(32);
+    ;; builder string = begin_cell().store_int(f,32);
+    ;; tuple chars = null();
+    ;; while(~ s.slice_empty?()){
+    ;;     if(s.slice_data_empty?()){
+    ;;         s = s~load_ref().begin_parse();
+    ;;     }
+    ;;     int char = s~load_uint(8);
+    ;;     if((65 <= char) & (char <= 90)){
+    ;;         char += shift;
+    ;;         if(char < 65){
+    ;;             char += 26;
+    ;;         }
+    ;;     }
+    ;;     if((97 <= char) & (char <= 122)){
+    ;;         char += shift;
+    ;;         if(char < 97){
+    ;;             char += 26;
+    ;;         }
+    ;;     }
+    ;;     chars = cons(char,chars);
+    ;; }
+    ;; do{
+    ;;     int char = chars~list_next();
+    ;;     chars2 = cons(char,chars2);
+    ;; }until(null?(chars));
+    ;; do{
+    ;;     int char = chars2~list_next();
+    ;;     string~store_uint(char,8);
+    ;; }until(null?(chars2));
+    ;; return string.end_cell();
+    return begin_cell().end_cell();
 }
 
