@@ -33,29 +33,34 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         chars = cons(char,chars);
     }
     int siz = chars.tlen();
-    ;; if(siz > 123){
-    ;;     siz -= 123;
-    ;;     builder b2 = begin_cell();
-    ;;     while(siz){
-    ;;         builder b1 = begin_cell();
-    ;;         b1 = b2;
-    ;;         tuple chars2 = null();
-    ;;         repeat(min(siz,127)){
-    ;;             int char = chars~list_next();
-    ;;             chars2 = cons(char,chars2);
-    ;;         }
-    ;;         repeat(min(siz,127)){
-    ;;             int char = chars2~list_next();
-    ;;             b1~store_uint(char,8);
-    ;;         }
-    ;;         b2.store_ref(b1.end_cell());
-    ;;         siz -= min(siz,127);
-    ;;     }
-    ;;     string.store_ref(b2.end_cell());
-    ;;     siz += 123;
-    ;; }
-    while(siz){
+    if(siz > 123){
+        siz -= 123;
+        builder b2 = begin_cell();
+        while(siz){
+            builder b1 = begin_cell();
+            b1 = b2;
+            tuple chars2 = null();
+            repeat(min(siz,127)){
+                int char = chars~list_next();
+                chars2 = cons(char,chars2);
+            }
+            repeat(min(siz,127)){
+                int char = chars2~list_next();
+                b1~store_uint(char,8);
+            }
+            b2.store_ref(b1.end_cell());
+            siz -= min(siz,127);
+        }
+        string.store_ref(b2.end_cell());
+        siz += 123;
+    }
+    tuple chars2 = null();
+    repeat(siz){
         int char = chars~list_next();
+        chars2 = cons(char,chars2);
+    }
+    repeat(siz){
+        int char = chars2~list_next();
         string~store_uint(char,8);
         siz -= 1;
     }
@@ -83,29 +88,34 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         chars = cons(char,chars);
     }
     int siz = chars.tlen();
-    ;; if(siz > 123){
-    ;;     siz -= 123;
-    ;;     builder b2 = begin_cell();
-    ;;     while(siz){
-    ;;         builder b1 = begin_cell();
-    ;;         b1 = b2;
-    ;;         tuple chars2 = null();
-    ;;         repeat(min(siz,127)){
-    ;;             int char = chars~list_next();
-    ;;             chars2 = cons(char,chars2);
-    ;;         }
-    ;;         repeat(min(siz,127)){
-    ;;             int char = chars2~list_next();
-    ;;             b1~store_uint(char,8);
-    ;;         }
-    ;;         b2.store_ref(b1.end_cell());
-    ;;         siz -= min(siz,127);
-    ;;     }
-    ;;     string.store_ref(b2.end_cell());
-    ;;     siz += 123;
-    ;; }
-    while(siz){
+    if(siz > 123){
+        siz -= 123;
+        builder b2 = begin_cell();
+        while(siz){
+            builder b1 = begin_cell();
+            b1 = b2;
+            tuple chars2 = null();
+            repeat(min(siz,127)){
+                int char = chars~list_next();
+                chars2 = cons(char,chars2);
+            }
+            repeat(min(siz,127)){
+                int char = chars2~list_next();
+                b1~store_uint(char,8);
+            }
+            b2.store_ref(b1.end_cell());
+            siz -= min(siz,127);
+        }
+        string.store_ref(b2.end_cell());
+        siz += 123;
+    }
+    tuple chars2 = null();
+    repeat(siz){
         int char = chars~list_next();
+        chars2 = cons(char,chars2);
+    }
+    repeat(siz){
+        int char = chars2~list_next();
         string~store_uint(char,8);
         siz -= 1;
     }
