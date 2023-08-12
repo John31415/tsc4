@@ -38,15 +38,15 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         chars = cons(char,chars);
     }
     while(~ chars.null?()){
-        (int char , chars) = uncons(chars);
+        int char = chars~list_next();
         chars2 = cons(char,chars2); 
     }
-    ;; do{
-    ;;     int char = chars2~list_next();
-    ;;     string~store_uint(char,8);
-    ;; }until(null?(chars2));
-    ;; return string.end_cell();
-    return begin_cell().end_cell();
+    while(~ chars2.null?()){
+        int char = chars2~list_next();
+        string~store_uint(char,8);
+    }
+    return string.end_cell();
+    ;; return begin_cell().end_cell();
 }
 
 ;; testable
