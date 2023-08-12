@@ -15,6 +15,7 @@
     int f = s~load_int(32);
     builder string = begin_cell().store_int(f,32);
     tuple chars = null();
+    tuple chars2 = null();
     while(~ s.slice_empty?()){
         if(s.slice_data_empty?()){
             s = s~load_ref().begin_parse();
@@ -36,8 +37,12 @@
     }
     do{
         int char = chars~list_next();
-        string~store_uint(char,8);
+        chars2 = cons(char,chars2);
     }until(null?(chars));
+    do{
+        int char = chars2~list_next();
+        string~store_uint(char,8);
+    }until(null?(chars2));
     return string.end_cell();
     ;; return begin_cell().end_cell();
 }
@@ -69,8 +74,12 @@
     }
     do{
         int char = chars~list_next();
-        string~store_uint(char,8);
+        chars2 = cons(char,chars2);
     }until(null?(chars));
+    do{
+        int char = chars2~list_next();
+        string~store_uint(char,8);
+    }until(null?(chars2));
     return string.end_cell();
     ;; return begin_cell().end_cell();
 }
