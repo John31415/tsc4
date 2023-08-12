@@ -52,7 +52,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         ;;     b2.store_ref(b1.end_cell());
         ;;     siz -= min(siz,127);
         ;; }
-        string.store_ref(b2.end_cell());
+        ;; string.store_ref(b2.end_cell());
         siz += 123;
         while(siz){
             int char = chars~list_next();
