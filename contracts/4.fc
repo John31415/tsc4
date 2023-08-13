@@ -39,16 +39,20 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
             builder b1 = begin_cell();
             b1 = string;
             tuple chars2 = null();
-            repeat(min(siz,127)){
+            int x = 127;
+            if(siz % 127){
+                x = siz % 127;
+            } 
+            repeat(x){
                 int char = chars~list_next();
                 chars2 = cons(char,chars2);
             }
-            repeat(min(siz,127)){
+            repeat(x){
                 int char = chars2~list_next();
                 b1~store_uint(char,8);
             }
             string = begin_cell().store_ref(b1.end_cell());
-            siz -= min(siz,127);
+            siz -= x;
         }
         siz += 123;
     }
@@ -93,16 +97,20 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
             builder b1 = begin_cell();
             b1 = string;
             tuple chars2 = null();
-            repeat(min(siz,127)){
+            int x = 127;
+            if(siz % 127){
+                x = siz % 127;
+            } 
+            repeat(x){
                 int char = chars~list_next();
                 chars2 = cons(char,chars2);
             }
-            repeat(min(siz,127)){
+            repeat(x){
                 int char = chars2~list_next();
                 b1~store_uint(char,8);
             }
             string = begin_cell().store_ref(b1.end_cell());
-            siz -= min(siz,127);
+            siz -= x;
         }
         siz += 123;
     }
