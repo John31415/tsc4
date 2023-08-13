@@ -16,7 +16,6 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     shift %= 26;
     slice s = text.begin_parse();
     int f = s~load_int(32);
-    builder string = begin_cell().store_int(f,32);
     tuple chars = null();
     int siz = 0;
     while(~ s.slice_empty?()){
@@ -33,12 +32,12 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         siz += 1;
         chars = cons(char,chars);
     }
+    builder string = begin_cell();
     if(siz > 123){
         siz -= 123;
-        builder b2 = begin_cell();
         while(siz){
             builder b1 = begin_cell();
-            b1 = b2;
+            b1 = string;
             tuple chars2 = null();
             repeat(min(siz,127)){
                 int char = chars~list_next();
@@ -48,12 +47,12 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
                 int char = chars2~list_next();
                 b1~store_uint(char,8);
             }
-            b2 = begin_cell().store_ref(b1.end_cell());
+            string = begin_cell().store_ref(b1.end_cell());
             siz -= min(siz,127);
         }
-        string = string.store_ref(b2.end_cell());
         siz += 123;
     }
+    string~store_int(f,32);
     tuple chars2 = null();
     repeat(siz){
         int char = chars~list_next();
@@ -71,7 +70,6 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     shift %= 26;
     slice s = text.begin_parse();
     int f = s~load_int(32);
-    builder string = begin_cell().store_int(f,32);
     tuple chars = null();
     int siz = 0;
     while(~ s.slice_empty?()){
@@ -88,12 +86,12 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         chars = cons(char,chars);
         siz += 1;
     }
+    builder string = begin_cell();
     if(siz > 123){
         siz -= 123;
-        builder b2 = begin_cell();
         while(siz){
             builder b1 = begin_cell();
-            b1 = b2;
+            b1 = string;
             tuple chars2 = null();
             repeat(min(siz,127)){
                 int char = chars~list_next();
@@ -103,12 +101,12 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
                 int char = chars2~list_next();
                 b1~store_uint(char,8);
             }
-            b2 = begin_cell().store_ref(b1.end_cell());
+            string = begin_cell().store_ref(b1.end_cell());
             siz -= min(siz,127);
         }
-        string = string.store_ref(b2.end_cell());
         siz += 123;
     }
+    string~store_int(f,32);
     tuple chars2 = null();
     repeat(siz){
         int char = chars~list_next();
