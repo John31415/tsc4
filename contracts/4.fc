@@ -7,7 +7,6 @@
 -}
 
 forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
-(int) tlen (tuple t) asm "TLEN";
 
 () recv_internal() {
 }
@@ -33,7 +32,6 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         }
         siz += 1;
         chars = cons(char,chars);
-        ;; string~store_uint(char,8);
     }
     if(siz > 123){
         siz -= 123;
@@ -50,10 +48,10 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
                 int char = chars2~list_next();
                 b1~store_uint(char,8);
             }
-            b2.store_ref(b1.end_cell());
+            b2 = begin_cell().store_ref(b1.end_cell());
             siz -= min(siz,127);
         }
-        string.store_ref(b2.end_cell());
+        string = string.store_ref(b2.end_cell());
         siz += 123;
     }
     tuple chars2 = null();
@@ -89,7 +87,6 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         }
         chars = cons(char,chars);
         siz += 1;
-        ;; string~store_uint(char,8);
     }
     if(siz > 123){
         siz -= 123;
@@ -106,10 +103,10 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
                 int char = chars2~list_next();
                 b1~store_uint(char,8);
             }
-            b2.store_ref(b1.end_cell());
+            b2 = begin_cell().store_ref(b1.end_cell());
             siz -= min(siz,127);
         }
-        string.store_ref(b2.end_cell());
+        string = string.store_ref(b2.end_cell());
         siz += 123;
     }
     tuple chars2 = null();
