@@ -50,7 +50,8 @@
                 repeat(c2){
                     if(value & aux){
                         solve~store_uint(1,1);
-                    }else{
+                    }
+                    else{
                         solve~store_uint(0,1);
                     }
                     aux /= 2;
@@ -72,7 +73,8 @@
     repeat(con){
         if(curr & aux){
             solve~store_uint(1,1);
-        }else{
+        }
+        else{
             solve~store_uint(0,1);
         }
         aux /= 2;
