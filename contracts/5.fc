@@ -18,7 +18,7 @@
 
 (tuple) empty_tuple() inline asm "NIL";
 
-(tuple) fib (int n,int k) inline asm "-1 INT 1 INT s3 PUSH s3 PUSH ADD <{ DUP2 ADD s2 s3 XCHG }>REPEAT ROTREV TUPLEVAR 1 RETARGS";
+(tuple) fib (int n,int k) inline asm "-1 INT 1 INT s3 PUSH s3 PUSH ADD <{ DUP2 ADD s2 s3 XCHG }>REPEAT ROTREV DUP 1 INT REVERSE TUPLEVAR 1 RETARGS";
 
 ;; testable
 (tuple) fibonacci_sequence (int n, int k) method_id { 
