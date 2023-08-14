@@ -22,7 +22,6 @@
 ;; testable
 (cell) find_and_replace(int flag, int value, cell linked_list) method_id {
     slice s = linked_list.begin_parse();
-    builder solve = begin_cell();
     int BIT = 1;
     int BIT2 = 1;
     int c = 1;
@@ -37,6 +36,8 @@
     }
     int curr = 0;
     int con = 0;
+    tuple t = null();
+    int siz = 0;
     while(~ s.slice_empty?()){
         if(s.slice_data_empty?()){
             s = s~load_ref().begin_parse();
@@ -49,10 +50,12 @@
                 int aux = BIT2;
                 repeat(c2){
                     if(value & aux){
-                        solve~store_uint(1,1);
+                        t = cons(1,t);
+                        siz += 1;
                     }
                     else{
-                        solve~store_uint(0,1);
+                        t = cons(0,t);
+                        siz += 1;
                     }
                     aux /= 2;
                 }
@@ -63,11 +66,13 @@
                 if(curr & BIT){
                     curr ^= BIT;
                     con -= 1;
-                    solve~store_uint(1,1);
+                    t = cons(1,t);
+                    siz += 1;
                 }
                 else{
                     con -= 1;
-                    solve~store_uint(0,1);
+                    t = cons(0,t);
+                    siz += 1;
                 }
             }
         }
@@ -75,13 +80,50 @@
     int aux = (1 << (con - 1));
     repeat(con){
         if(curr & aux){
-            solve~store_uint(1,1);
+            t = cons(1,t);
+            siz += 1;
         }
         else{
-            solve~store_uint(0,1);
+            t = cons(0,t);
+            siz += 1;
         }
         aux /= 2;
     }
+    builder solve = begin_cell();
+    if(siz > 1023){
+        siz -= 1023;
+        while(siz){
+            builder b1 = begin_cell();
+            b1 = solve;
+            tuple t2 = null();
+            int x = 1023;
+            if(siz % 1023){
+                x = siz % 1023;
+            } 
+            repeat(x){
+                int v = t~list_next();
+                t2 = cons(v,t2);
+            }
+            repeat(x){
+                int v = t2~list_next();
+                b1~store_uint(v,1);
+            }
+            solve = begin_cell().store_ref(b1.end_cell());
+            siz -= x;
+        }
+        siz += 123;
+    }
+    tuple t2 = null();
+    repeat(siz){
+        int v = t~list_next();
+        t2 = cons(v,t2);
+    }
+    repeat(siz){
+        int v = t2~list_next();
+        solve~store_uint(v,1);
+    }
+
+
     return solve.end_cell();
 }
 
