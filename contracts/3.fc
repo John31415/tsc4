@@ -50,11 +50,11 @@
                 int aux = BIT2;
                 repeat(c2){
                     if(value & aux){
-                        t = cons(1,t);
+                        t = cons(0,t);
                         siz += 1;
                     }
                     else{
-                        t = cons(0,t);
+                        t = cons(1,t);
                         siz += 1;
                     }
                     aux /= 2;
@@ -66,12 +66,12 @@
                 if(curr & BIT){
                     curr ^= BIT;
                     con -= 1;
-                    t = cons(1,t);
+                    t = cons(0,t);
                     siz += 1;
                 }
                 else{
                     con -= 1;
-                    t = cons(0,t);
+                    t = cons(1,t);
                     siz += 1;
                 }
             }
@@ -80,11 +80,11 @@
     int aux = (1 << (con - 1));
     repeat(con){
         if(curr & aux){
-            t = cons(1,t);
+            t = cons(0,t);
             siz += 1;
         }
         else{
-            t = cons(0,t);
+            t = cons(1,t);
             siz += 1;
         }
         aux /= 2;
