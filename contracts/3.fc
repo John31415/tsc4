@@ -54,7 +54,7 @@
                         siz += 1;
                     }
                     else{
-                        t = cons(1,t);
+                        ;; t = cons(1,t);
                         siz += 1;
                     }
                     aux /= 2;
