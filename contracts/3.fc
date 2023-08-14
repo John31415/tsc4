@@ -53,7 +53,7 @@
                         t = cons(0,t);
                         siz += 1;
                     }
-                    else{
+                    else {
                         ;; t = cons(1,t);
                         siz += 1;
                     }
