@@ -16,21 +16,16 @@
 () recv_internal() {
 }
 
+(tuple) empty_tuple() inline asm "NIL";
+
+(tuple) fib (int n,int k) inline asm "{-1 INT 1 INT s3 PUSH s3 PUSH ADD <{DUP2 ADD s2 s3 XCHG}>REPEAT ROT TUPLEVAR 1 RETARGS}";
+
 ;; testable
 (tuple) fibonacci_sequence (int n, int k) method_id { 
-    int a = -1; 
-    int b = 1;
-    tuple t = empty_tuple();
-    repeat (n){
-        a += b;
-        (a , b) = (b , a);
+    if(k == 0){
+        return empty_tuple();
     }
-    repeat (k){
-        a += b;
-        (a , b) = (b , a);
-        t~tpush(b);
-    }
-    return t;
+    return fib(n,k);
 }
 ;; git add . && git commit -m "cualquier cosa" && git push -u origin main
 ;; 5.656760460407202

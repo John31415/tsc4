@@ -15,7 +15,7 @@ forall X -> (X) index(tuple t, int k) asm "INDEXVAR";
 () recv_internal() {
 }
 
-;; testable
+;; testable 
 (tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
     int n = matrixA.tlen();
     int m = matrixB.tlen();
