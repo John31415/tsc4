@@ -49,7 +49,7 @@
             if(curr == flag){
                 int aux = BIT2;
                 repeat(c2){
-                    if(value & aux){
+                    if((value & aux)){
                         t = cons(0,t);
                         siz += 1;
                     }
