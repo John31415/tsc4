@@ -21,6 +21,62 @@
 
 ;; testable
 (cell) find_and_replace(int flag, int value, cell linked_list) method_id {
-  return begin_cell().end_cell();
+    slice s = linked_list.begin_parse();
+    builder solve = begin_cell();
+    int BIT = 1;
+    int BIT2 = 1;
+    int c = 1;
+    int c2 = 1;
+    while(2*BIT <= flag){
+        BIT *= 2;
+        c += 1;
+    }
+    while(2*BIT2 <= value){
+        BIT2 *= 2;
+        c2 += 1;
+    }
+    int curr = 0;
+    int con = 0;
+    while(~ s.slice_empty?()){
+        if(s.slice_data_empty?()){
+            s = s~load_ref().begin_parse();
+        }
+        curr *= 2;
+        curr += s~load_uint(1);
+        con += 1;
+        if(con == c){
+            if(curr == flag){
+                int aux = BIT2;
+                repeat(c2){
+                    if(value & aux){
+                        solve~store_uint(1,1);
+                    }else{
+                        solve~store_uint(0,1);
+                    }
+                    aux /= 2;
+                }
+                curr = 0;
+                con = 0;
+            }
+            if(curr & BIT){
+                curr ^= BIT;
+                con -= 1;
+                solve~store_uint(1,1);
+            }else{
+                con -= 1;
+                solve~store_uint(0,1);
+            }
+        }
+    }
+    int aux = (1 << (con - 1));
+    repeat(con){
+        if(curr & aux){
+            solve~store_uint(1,1);
+        }else{
+            solve~store_uint(0,1);
+        }
+        aux /= 2;
+    }
+    return solve.end_cell();
 }
 
