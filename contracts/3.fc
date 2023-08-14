@@ -27,11 +27,11 @@
     int BIT2 = 1;
     int c = 1;
     int c2 = 1;
-    while(2*BIT <= flag){
+    while(2 * BIT <= flag){
         BIT *= 2;
         c += 1;
     }
-    while(2*BIT2 <= value){
+    while(2 * BIT2 <= value){
         BIT2 *= 2;
         c2 += 1;
     }
