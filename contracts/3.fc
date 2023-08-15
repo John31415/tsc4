@@ -43,6 +43,7 @@
         while(s.slice_data_empty?()){
             s = s~load_ref().begin_parse();
         }
+        curr &= (1 << 130) - 1
         curr *= 2;
         curr += s~load_uint(1);
         con += 1;
