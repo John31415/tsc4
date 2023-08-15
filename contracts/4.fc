@@ -79,6 +79,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     int con = 0;
     int flag = 0;
     builder curr = begin_cell();
+    builder string = begin_cell();
     while(~ s.slice_empty?()){
         if(s.slice_data_empty?()){
             s = s~load_ref().begin_parse();
@@ -117,7 +118,6 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     ;;     chars = cons(curr,chars);
     ;;     siz += 1;
     ;; }
-    ;; builder string = begin_cell();
     ;; builder aux = begin_cell(); 
     ;; aux = chars~list_next();
     ;; siz -= 1; 
