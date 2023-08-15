@@ -121,7 +121,7 @@
             solve = begin_cell().store_ref(b1.end_cell());
             siz -= x;
         }
-        siz += 123;
+        siz += 1023;
     }
     tuple t2 = null();
     repeat(siz){
