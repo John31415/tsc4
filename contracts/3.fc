@@ -22,7 +22,7 @@
 ;; testable
 (cell) find_and_replace(int flag, int value, cell linked_list) method_id {
     slice s = linked_list.begin_parse();
-    if(s.slice_empty?()){
+    if((s.slice_empty?()) | (flag < 0) | (value < 0)){
         return begin_cell().end_cell();
     }
     builder solve = begin_cell();
@@ -101,15 +101,15 @@
         }
         aux /= 2;
     }
-    if(siz > 1023){
-        siz -= 1023;
+    if(siz > 1000){
+        siz -= 1000;
         while(siz){
             builder b1 = begin_cell();
             b1 = solve;
             tuple t2 = null();
-            int x = 1023;
-            if(siz % 1023){
-                x = siz % 1023;
+            int x = 1000;
+            if(siz % 1000){
+                x = siz % 1000;
             } 
             repeat(x){
                 int v = t~list_next();
@@ -122,7 +122,7 @@
             solve = begin_cell().store_ref(b1.end_cell());
             siz -= x;
         }
-        siz += 1023;
+        siz += 1000;
     }
     tuple t2 = null();
     repeat(siz){
