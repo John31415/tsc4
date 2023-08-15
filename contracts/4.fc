@@ -122,7 +122,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     siz -= 1;
     repeat(siz){
         string = chars~list_next().store_ref(aux.end_cell());
-        aux = string;
+        aux = string; 
     }
     return string.end_cell();
 }
