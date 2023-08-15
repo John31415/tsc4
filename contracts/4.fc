@@ -117,7 +117,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         siz += 1;
     }
     builder string = begin_cell();
-    builder aux = begin_cell();
+    builder aux = begin_cell(); 
     aux = chars~list_next();
     siz -= 1;
     repeat(siz){
