@@ -50,7 +50,8 @@
             if(curr == flag){
                 int aux = BIT2;
                 repeat(c2){
-                    if(value & aux){
+                    int val = value & aux;
+                    if(val){
                         t = cons(1,t);
                         solve~store_uint(1,1);
                         siz += 1;
@@ -66,7 +67,8 @@
                 con = 0;
             }
             else {
-                if(curr & BIT){
+                int val = curr & BIT;
+                if(val){
                     curr ^= BIT;
                     con -= 1;
                     t = cons(1,t);
@@ -84,7 +86,8 @@
     }
     int aux = (1 << (con - 1));
     repeat(con){
-        if(curr & aux){
+        int val = curr & aux;
+        if(val){
             t = cons(1,t);
             solve~store_uint(1,1);
             siz += 1;
