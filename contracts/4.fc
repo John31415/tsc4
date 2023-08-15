@@ -90,41 +90,42 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         if((97 <= char) & (char <= 122)){
             char = (char - 97 - shift) % 26 + 97;
         }
-        if(flag == 0){
-            curr~store_uint(char,8);
-            con += 1;
-            if(con == 123){
-                flag = -1;
-                con = 0;
-                chars = cons(curr,chars);
-                curr = begin_cell();
-                siz += 1;
-            }
-        }
-        else {
-            curr~store_uint(char,8);
-            con += 1;
-            if(con == 127){
-                con = 0;
-                chars = cons(curr,chars);
-                curr = begin_cell();
-                siz += 1;
-            }
-        }
+        string~store_uint(char,8);
+        ;; if(flag == 0){
+        ;;     curr~store_uint(char,8);
+        ;;     con += 1;
+        ;;     if(con == 123){
+        ;;         flag = -1;
+        ;;         con = 0;
+        ;;         chars = cons(curr,chars);
+        ;;         curr = begin_cell();
+        ;;         siz += 1;
+        ;;     }
+        ;; }
+        ;; else {
+        ;;     curr~store_uint(char,8);
+        ;;     con += 1;
+        ;;     if(con == 127){
+        ;;         con = 0;
+        ;;         chars = cons(curr,chars);
+        ;;         curr = begin_cell();
+        ;;         siz += 1;
+        ;;     }
+        ;; }
     }
-    if(con){
-        chars = cons(curr,chars);
-        siz += 1;
-    }
-    builder string = begin_cell();
-    builder aux = begin_cell(); 
-    aux = chars~list_next();
-    siz -= 1; 
-    repeat(siz){
-        string = chars~list_next().store_ref(aux.end_cell());
-        aux = begin_cell();
-        aux = string; 
-    }
+    ;; if(con){
+    ;;     chars = cons(curr,chars);
+    ;;     siz += 1;
+    ;; }
+    ;; builder string = begin_cell();
+    ;; builder aux = begin_cell(); 
+    ;; aux = chars~list_next();
+    ;; siz -= 1; 
+    ;; repeat(siz){
+    ;;     string = chars~list_next().store_ref(aux.end_cell());
+    ;;     aux = begin_cell();
+    ;;     aux = string; 
+    ;; }
     string~store_int(f,32);
     return string.end_cell();
 }
