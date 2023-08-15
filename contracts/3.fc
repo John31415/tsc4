@@ -101,15 +101,15 @@
         }
         aux /= 2;
     }
-    if(siz > 1000){
-        siz -= 1000;
+    if(siz > 1023){
+        siz -= 1023;
         while(siz){
             builder b1 = begin_cell();
             b1 = solve;
             tuple t2 = null();
-            int x = 1000;
-            if(siz % 1000){
-                x = siz % 1000;
+            int x = 1023;
+            if(siz % 1023){
+                x = siz % 1023;
             } 
             repeat(x){
                 int v = t~list_next();
@@ -122,7 +122,7 @@
             solve = begin_cell().store_ref(b1.end_cell());
             siz -= x;
         }
-        siz += 1000;
+        siz += 1023;
     }
     tuple t2 = null();
     repeat(siz){
