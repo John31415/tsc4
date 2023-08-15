@@ -45,7 +45,8 @@
         }
         curr &= (1 << 130) - 1;
         curr *= 2;
-        curr += s~load_uint(1);
+        int x = s~load_uint(1);
+        curr += x;
         con += 1;
         if(con == c){
             if(curr == flag){
