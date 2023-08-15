@@ -58,12 +58,12 @@
                     int val = value & aux;
                     if(val){
                         t = cons(1,t);
-                        ;; solve~store_uint(1,1);
+                        solve~store_uint(1,1);
                         siz += 1;
                     }
                     else {
                         t = cons(0,t);
-                        ;; solve~store_uint(0,1);
+                        solve~store_uint(0,1);
                         siz += 1;
                     }
                     aux /= 2;
@@ -77,13 +77,13 @@
                     curr ^= BIT;
                     con -= 1;
                     t = cons(1,t);
-                    ;; solve~store_uint(1,1);
+                    solve~store_uint(1,1);
                     siz += 1;
                 }
                 else {
                     con -= 1;
                     t = cons(0,t);
-                    ;; solve~store_uint(0,1);
+                    solve~store_uint(0,1);
                     siz += 1;
                 }
             }
@@ -94,12 +94,12 @@
         int val = curr & aux;
         if(val){
             t = cons(1,t);
-            ;; solve~store_uint(1,1);
+            solve~store_uint(1,1);
             siz += 1;
         }
         else {
             t = cons(0,t);
-            ;; solve~store_uint(0,1);
+            solve~store_uint(0,1);
             siz += 1;
         }
         aux /= 2;
@@ -134,7 +134,7 @@
     }
     repeat(siz){
         int v = t2~list_next();
-        solve~store_uint(v,1);
+        ;; solve~store_uint(v,1);
     }
 
 
