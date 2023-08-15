@@ -40,7 +40,7 @@
     tuple t = null();
     int siz = 0;
     while(~ s.slice_empty?()){
-        if(s.slice_data_empty?()){
+        while(s.slice_data_empty?()){
             s = s~load_ref().begin_parse();
         }
         curr *= 2;
