@@ -22,6 +22,9 @@
 ;; testable
 (cell) find_and_replace(int flag, int value, cell linked_list) method_id {
     slice s = linked_list.begin_parse();
+    if(s.slice_empty?()){
+        return begin_cell().end_cell();
+    }
     builder solve = begin_cell();
     int BIT = 1;
     int BIT2 = 1;
