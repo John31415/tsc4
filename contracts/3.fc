@@ -31,11 +31,11 @@
     int c = 1;
     int c2 = 1;
     while(2 * BIT <= flag){
-        BIT *= 2;
+        BIT <<= 1;
         c += 1;
     }
     while(2 * BIT2 <= value){
-        BIT2 *= 2;
+        BIT2 <<= 1;
         c2 += 1;
     }
     int curr = 0;
@@ -47,7 +47,7 @@
             s = s~load_ref().begin_parse();
         }
         curr &= (1 << 130) - 1;
-        curr *= 2;
+        curr <<= 1;
         int x = s~load_uint(1);
         curr += x;
         con += 1;
@@ -87,7 +87,7 @@
     }
     int aux = 1;
     repeat(con - 1){
-        aux *= 2;
+        aux <<= 1;
     }
     repeat(con){
         int val = curr & aux;
@@ -99,7 +99,7 @@
             t = cons(0,t);
             siz += 1;
         }
-        aux /= 2;
+        aux >>= 1;
     }
     if(siz > 1023){
         siz -= 1023;
