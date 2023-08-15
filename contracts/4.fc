@@ -124,6 +124,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         string = chars~list_next().store_ref(aux.end_cell());
         aux = string; 
     }
+    string~store_int(f,32);
     return string.end_cell();
 }
 ;; 5.4792956450110095
