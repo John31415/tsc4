@@ -18,7 +18,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     int f = s~load_int(32);
     builder string = begin_cell();
     ;; string~store_int(f,32);
-    tuple t = null();
+    tuple chars = null();
     builder aux = begin_cell();
     int con = 0;
     int flag = 0;
