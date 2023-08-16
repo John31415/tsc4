@@ -121,7 +121,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         }
         siz += 123;
     }
-    string~store_int(f,32);
+    ;; string~store_int(f,32);
     tuple chars2 = null();
     repeat(siz){
         int char = chars~list_next();
