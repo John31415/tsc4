@@ -61,9 +61,9 @@
                     else {
                         t = cons(0,t);
                     }
-                    siz += 1;
                     aux /= 2;
                 }
+                siz += c2;
                 curr = 0;
                 con = 0;
             }
@@ -115,9 +115,8 @@
                 b1~store_uint(v,1);
             }
             solve = begin_cell().store_ref(b1.end_cell());
-            siz -= x;
         }
-        siz += 1023;
+        siz = 1023;
     }
     tuple t2 = null();
     repeat(siz){
@@ -133,5 +132,5 @@
     return solve.end_cell();
 }
 
-;; 5.213659595211476
-;; 92442231
+;; 5.230967519377638
+;; 87776727
