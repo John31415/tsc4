@@ -16,6 +16,8 @@
 
 -}
 
+int bits(int number) asm "UBITSIZE";
+
 () recv_internal() {
 }
 
@@ -32,12 +34,12 @@
     int c2 = 1;
     while(2 * BIT <= flag){
         BIT <<= 1;
-        c += 1;
     }
     while(2 * BIT2 <= value){
         BIT2 <<= 1;
-        c2 += 1;
     }
+    c = bits(BIT);
+    c2 = bits(BIT2);
     int curr = 0;
     int con = 0;
     tuple t = null();
