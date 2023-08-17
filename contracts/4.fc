@@ -63,7 +63,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         t = cons(aux,t); 
         siz += 1; 
     }
-    builder string = begin_cell();
+    builder string = begin_cell(); 
     string = t~list_next();
     siz -= 1;
     while(~ t.null?()){
