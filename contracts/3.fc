@@ -43,10 +43,9 @@
     tuple t = null();
     int siz = 0;
     while(~ s.slice_empty?()){
-        while(s.slice_data_empty?()){
+        if(s.slice_data_empty?()){
             s = s~load_ref().begin_parse();
         }
-        curr &= (1 << 130) - 1;
         curr <<= 1;
         int x = s~load_uint(1);
         curr += x;
@@ -58,12 +57,11 @@
                     int val = value & aux;
                     if(val){
                         t = cons(1,t);
-                        siz += 1;
                     }
                     else {
                         t = cons(0,t);
-                        siz += 1;
                     }
+                    siz += 1;
                     aux /= 2;
                 }
                 curr = 0;
@@ -73,15 +71,13 @@
                 int val = curr & BIT;
                 if(val){
                     curr ^= BIT;
-                    con -= 1;
                     t = cons(1,t);
-                    siz += 1;
                 }
                 else {
-                    con -= 1;
                     t = cons(0,t);
-                    siz += 1;
                 }
+                con -= 1;
+                siz += 1;
             }
         }
     }
@@ -93,12 +89,11 @@
         int val = curr & aux;
         if(val){
             t = cons(1,t);
-            siz += 1;
         }
         else {
             t = cons(0,t);
-            siz += 1;
         }
+        siz += 1;
         aux >>= 1;
     }
     if(siz > 1023){

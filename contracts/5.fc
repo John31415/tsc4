@@ -28,5 +28,5 @@
     return fib(n,k);
 }
 ;; git add . && git commit -m "cualquier cosa" && git push -u origin main
-;; 5.7784055121988365 
-;; 510103
+;; 5.817876553925343
+;; 409381
