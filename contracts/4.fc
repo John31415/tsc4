@@ -67,12 +67,12 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     builder string = begin_cell();
     string = t~list_next();
     siz -= 1;
-    repeat(siz){
-        aux = t~list_next();
-        aux = aux.store_ref(string.end_cell());
-        string = begin_cell();
-        string = aux;
-    }
+    ;; repeat(siz){
+    ;;     aux = t~list_next();
+    ;;     aux = aux.store_ref(string.end_cell());
+    ;;     string = begin_cell();
+    ;;     string = aux;
+    ;; }
     return string.end_cell();
 }
 
