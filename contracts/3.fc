@@ -96,7 +96,7 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         tuple t2 = null();
         int s = 0;
         while(s <= 1023){
-            int v = t.list_next();
+            (t , int v) = t.list_next();
             s += v;
             if(s <= 1023){
                 v = t~list_next();
