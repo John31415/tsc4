@@ -55,16 +55,7 @@ int bits(int number) asm "UBITSIZE";
         if(con == c){
             if(curr == flag){
                 int aux = BIT2;
-                repeat(c2){
-                    int val = value & aux;
-                    if(val){
-                        t = cons(1,t);
-                    }
-                    else {
-                        t = cons(0,t);
-                    }
-                    aux /= 2;
-                }
+                t = cons(value,t);
                 siz += c2;
                 curr = 0;
                 con = 0;
@@ -102,17 +93,18 @@ int bits(int number) asm "UBITSIZE";
         builder b1 = begin_cell();
         b1 = solve;
         tuple t2 = null();
-        int x = 1023;
-        if(siz % 1023){
-            x = siz % 1023;
-        } 
-        repeat(x){
-            int v = t~list_next();
-            t2 = cons(v,t2);
+        int s = 0;
+        while(s <= 1023){
+            int v = t.list_next();
+            s += v;
+            if(s <= 1023){
+                v = t~list_next();
+                t2 = cons(v,t2);
+            }
         }
-        repeat(x){
+        while(~ t2.null?()){
             int v = t2~list_next();
-            b1~store_uint(v,1);
+            b1~store_uint(v,bits(v));
         }
         solve = begin_cell().store_ref(b1.end_cell());
         siz -= x;
