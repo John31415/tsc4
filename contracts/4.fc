@@ -61,18 +61,18 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
     }
     if(con){
         t = cons(aux,t); 
-        aux = begin_cell();
         siz += 1; 
     }
     builder string = begin_cell();
     string = t~list_next();
     siz -= 1;
-    ;; repeat(siz){
-    ;;     aux = t~list_next();
-    ;;     aux = aux.store_ref(string.end_cell());
-    ;;     string = begin_cell();
-    ;;     string = aux;
-    ;; }
+    repeat(siz){
+        builder aux1 = begin_cell();
+        aux1 = t~list_next();
+        aux1 = aux1.store_ref(string.end_cell());
+        string = begin_cell();
+        string = aux1; 
+    }
     return string.end_cell();
 }
 
