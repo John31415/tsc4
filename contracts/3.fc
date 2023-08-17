@@ -17,6 +17,7 @@
 -}
 
 int bits(int number) asm "UBITSIZE";
+forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
 
 () recv_internal() {
 }
