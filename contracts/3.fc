@@ -123,6 +123,7 @@ forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
     }
     if(siz){
         t~push_back(n);
+        SIZ += 1;
     }
     int pot = 1;
     repeat(254){
