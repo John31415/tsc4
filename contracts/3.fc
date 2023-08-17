@@ -70,7 +70,14 @@ forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
                     else {
                         ;; t = cons(0,t);
                     }
+                    siz += 1;
                     aux /= 2;
+                    if(siz == 255){
+                        t~push_back(n);
+                        SIZ += 1;
+                        siz = 0;
+                        n = 0;
+                    }
                 }
                 curr = 0;
                 con = 0;
@@ -88,13 +95,13 @@ forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
                     con -= 1;
                     ;; t = cons(0,t);
                 }
-            }
-            siz += 1;
-            if(siz == 255){
-                t~push_back(n);
-                SIZ += 1;
-                siz = 0;
-                n = 0;
+                siz += 1;
+                if(siz == 255){
+                    t~push_back(n);
+                    SIZ += 1;
+                    siz = 0;
+                    n = 0;
+                }
             }
         }
     }
