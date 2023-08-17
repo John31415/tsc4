@@ -6,7 +6,9 @@
   character should go to the beginning. Return new text encoded in cell.
 -}
 
-forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
 
 () recv_internal() {
 }
@@ -43,7 +45,8 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
             if(con == 123){
                 siz += 1;
                 flag = -1;
-                t = cons(char,t);
+                t~push_back(char);
+                ;; t = cons(char,t);
                 con = 0;
                 aux = begin_cell();
             }
@@ -52,7 +55,8 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
             aux~store_uint(char,8);
             con += 1;
             if(con == 127){
-                t = cons(aux,t);
+                t~push_back(char);
+                ;; t = cons(aux,t);
                 siz += 1;
                 con = 0;
                 aux = begin_cell();
@@ -60,20 +64,19 @@ forall X -> (tuple, X) list_next(tuple list) asm( -> 1 0) "UNCONS";
         }
     }
     if(con){
-        t = cons(aux,t); 
+        t~push_back(char);
+        ;; t = cons(aux,t); 
         siz += 1; 
     }
-    builder string = begin_cell(); 
-    string = t~list_next();
+    builder last_builder = begin_cell(); 
+    last_builder = t~list_next();
+    cell last_cell = last_builder.end_cell();
     siz -= 1;
-    while(~ t.null?()){
-        builder aux1 = begin_cell();
-        aux1 = t~list_next();
-        aux1 = aux1.store_ref(string.end_cell());
-        string = begin_cell();
-        string = aux1; 
+    while(~ t.is_null?()){
+        builder tb = t~pop_back();
+        last_cell = tb.store_ref(last_cell).end_cell();
     }
-    return string.end_cell();
+    return last_cell;
 }
 
 ;; testable
